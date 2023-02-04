@@ -24,7 +24,8 @@ int main()
     float endX = 500;
     float endY = 250;
 
-    float adj = 2;
+    float adj = 0;
+    float adjColour = 230;
 
     float thick = 12;
     float fontSize = 20;
@@ -36,6 +37,20 @@ int main()
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
+        Color red = (Color){ adjColour, 41, 55, 255 };    // Red
+        Color green = (Color){ 0, adjColour, 48, 255 };   // Green
+        Color blue = (Color){ 0, 121, adjColour, 255 };     // Blue
+
+        if (adjColour < 250)
+        {
+            adjColour++;
+        }
+        else if (adjColour < 5)
+        {
+            adjColour--;
+        }
+
+
         if (startX > 500)
         {
             adj = -1;
@@ -62,9 +77,9 @@ int main()
             // DrawGrid(10, 1.0f);
             // EndMode3D();
 
-            DrawLineBezier((Vector2){startX, startY}, (Vector2){endX, endY}, thick, RED);
-            DrawLineBezierQuad((Vector2){startX, startY}, (Vector2){endX, endY}, (Vector2){endX - startX, endY - startY}, thick, GREEN);
-            DrawLineBezierCubic((Vector2){startX, startY}, (Vector2){endX, endY}, (Vector2){endX - startX, endY - startY}, (Vector2){endY - startY, endX - startX}, thick, BLUE);
+            DrawLineBezier((Vector2){startX, startY}, (Vector2){endX, endY}, thick, red);
+            DrawLineBezierQuad((Vector2){startX, startY}, (Vector2){endX, endY}, (Vector2){endX - startX, endY - startY}, thick, green);
+            DrawLineBezierCubic((Vector2){startX, startY}, (Vector2){endX, endY}, (Vector2){endX - startX, endY - startY}, (Vector2){endY - startY, endX - startX}, thick, blue);
            
             // DrawLineBezier((Vector2){startX, endY}, (Vector2){endX, startY}, thick, colour);
             // DrawLineBezierQuad((Vector2){startX, endY}, (Vector2){endX, startY}, (Vector2){endX - startX, endY - startY}, thick, colour);
